@@ -1,0 +1,7 @@
+while read -r scaffold; 
+  do 
+  while read -r ID; 
+    do 
+      samtools mpileup -f /data5/maskedreference.fa -r "$scaffold" /data5/alignments/sorted_bam_files/"$ID"_sorted_RGadded_dupmarked.bam -o "$ID"_"$scaffold"_scaffolds1.vcf; 
+    done < "sulafilenames.txt" 
+done < "scaffolds1.txt"
