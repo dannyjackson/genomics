@@ -9,8 +9,8 @@ if [ $# -lt 1 ]
     [-v] Path to vcf file 
     [-o] Output directory for files
     [-p] Population file
-    [-n] Project name, prefix for output files"
-    [-s] Asks if you want SNPs to be subsetted to account for linkage. Define as any text to subset, leave off to ignore.
+    [-n] Project name, prefix for output files
+    [-s] Asks if you want SNPs to be subsetted to account for linkage. Define as any text to subset, leave off to ignore."
 
   else
     while getopts v:o:p:n:s: option
