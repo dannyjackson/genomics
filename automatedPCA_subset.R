@@ -60,7 +60,7 @@ dev.off()
 
 pdf(file = paste0(outDir,"/",name,"_pca_individuals_subsetted.pdf"), useDingbats=FALSE)
 
-plot(tab$EV2, tab$EV1, col=as.integer(tab$sampleid), xlab="eigenvector 2", ylab="eigenvector 1")
-legend("topright", legend=levels(tab$sampleid), pch="o", col=1:nlevels(tab$sampleid))
+plot(tab$EV2, tab$EV1, col=as.integer(tab$sample.id), xlab="eigenvector 2", ylab="eigenvector 1")
+legend("topright", legend=levels(tab$sample.id), pch="o", col=1:nlevels(tab$sample.id))
 
 dev.off()
