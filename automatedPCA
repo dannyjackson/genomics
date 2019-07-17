@@ -28,16 +28,7 @@ genofile <- snpgdsOpen(paste0(name,".gds"))
 pop_code <- scan(paste(pops), what=character())
 table(pop_code)
 
-#prune SNPS based on linkage disequilibrium
-set.seed(1000)
-snpset <- snpgdsLDpruning(genofile, ld.threshold=0.2, autosome.only = FALSE)
-snpset.id <- unlist(snpset)
-
-#run PCA
-#with subsetted snps
-pca <- snpgdsPCA(genofile, snp.id=snpset.id, num.thread=2, autosome.only = FALSE)
-
-#without subsetted snps
+#Run pca
 pca <- snpgdsPCA(genofile, num.thread=2, autosome.only = FALSE)
 
 #to calculate percent of variation that is accounted for by top PCA components:
@@ -50,12 +41,29 @@ sink()
 sample.id <- read.gdsn(index.gdsn(genofile, "sample.id"))
 
 #make data frame
-tab <- data.frame(sample.id = pca$sample.id,
+tab <- data.frame(sampleid = pca$sample.id,
 pop = factor(pop_code)[match(pca$sample.id, sample.id)],
 EV1 = pca$eigenvect[,1],    # the first eigenvector
 EV2 = pca$eigenvect[,2],    # the second eigenvector
 stringsAsFactors = FALSE)
 
-#here, transfer the data to your own computer and run it in R:
 #save files:
 write.table(tab, file = paste0(name,".txt"), sep = "\t")
+
+tab <- read.table(paste0(name,".txt"), header = TRUE, sep = "\t")
+
+
+#draw it:
+pdf(file = paste0(outDir,"/",name,"_pca_populations_notsubsetted.pdf"), useDingbats=FALSE)
+
+plot(tab$EV2, tab$EV1, col=as.integer(tab$pop), xlab="eigenvector 2", ylab="eigenvector 1")
+legend("topright", legend=levels(tab$pop), pch="o", col=1:nlevels(tab$pop))
+
+dev.off()
+
+pdf(file = paste0(outDir,"/",name,"_pca_individuals_notsubsetted.pdf"), useDingbats=FALSE)
+
+plot(tab$EV2, tab$EV1, col=as.integer(tab$sampleid), xlab="eigenvector 2", ylab="eigenvector 1")
+legend("topright", legend=levels(tab$sampleid), pch="o", col=1:nlevels(tab$sampleid))
+
+dev.off()
