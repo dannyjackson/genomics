@@ -24,11 +24,11 @@ if [ $# -lt 1 ]
     s) subset=${OPTARG};;
     esac
     done
-  Rscript ~/automatedPCA.R $dataset $outDir $pops $name
+  Rscript ~/genomics/automatedPCA.R $dataset $outDir $pops $name
   
  if [ -z $subset];
  then
  echo "Option to subset SNPs not chosen";
- else Rscript ~/automatedPCA_subset.R $dataset $outDir $pops $name;
+ else Rscript ~/genomics/automatedPCA_subset.R $dataset $outDir $pops $name;
  fi
 fi
