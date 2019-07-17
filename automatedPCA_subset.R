@@ -13,7 +13,7 @@ library(gdsfmt)
 library(SNPRelate)
 
 #open the GDS file
-genofile <- snpgdsOpen(paste0(outDir,"/"name,".gds"))
+genofile <- snpgdsOpen(paste0(outDir,"/",name,".gds"))
 
 #get population information
 pop_code <- scan(paste(pops), what=character())
@@ -45,9 +45,9 @@ EV2 = pca$eigenvect[,2],    # the second eigenvector
 stringsAsFactors = FALSE)
 
 #save files:
-write.table(tab, file = paste0(outDir,"/"name,".txt"), sep = "\t")
+write.table(tab, file = paste0(outDir,"/",name,".txt"), sep = "\t")
 
-tab <- read.table(paste0(outDir,"/"name,"_subset.txt"), header = TRUE, sep = "\t")
+tab <- read.table(paste0(outDir,"/",name,"_subset.txt"), header = TRUE, sep = "\t")
 
 
 #draw it:
