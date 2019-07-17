@@ -14,7 +14,7 @@ library(SNPRelate)
 
 #input
 vcf.fn <- paste(dataset)
-snpgdsVCF2GDS(vcf.fn, paste0(outDir,"/"name,".gds"), method="biallelic.only")
+snpgdsVCF2GDS(vcf.fn, paste0(outDir,"/",name,".gds"), method="biallelic.only")
 
 #summary
 sink(paste0(outDir,"/",name,"_summary.txt"), append=FALSE, split=FALSE)
@@ -22,7 +22,7 @@ snpgdsSummary(paste0(name,".gds"))
 sink()
 
 #open the GDS file
-genofile <- snpgdsOpen(paste0(outDir,"/"name,".gds"))
+genofile <- snpgdsOpen(paste0(outDir,"/",name,".gds"))
 
 #get population information
 pop_code <- scan(paste(pops), what=character())
@@ -48,9 +48,9 @@ EV2 = pca$eigenvect[,2],    # the second eigenvector
 stringsAsFactors = FALSE)
 
 #save files:
-write.table(tab, file = paste0(outDir,"/"name,".txt"), sep = "\t")
+write.table(tab, file = paste0(outDir,"/",name,".txt"), sep = "\t")
 
-tab <- read.table(paste0(outDir,"/"name,".txt"), header = TRUE, sep = "\t")
+tab <- read.table(paste0(outDir,"/",name,".txt"), header = TRUE, sep = "\t")
 
 
 #draw it:
