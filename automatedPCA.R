@@ -18,7 +18,7 @@ snpgdsVCF2GDS(vcf.fn, paste0(outDir,"/",name,".gds"), method="biallelic.only")
 
 #summary
 sink(paste0(outDir,"/",name,"_summary.txt"), append=FALSE, split=FALSE)
-snpgdsSummary(paste0(name,".gds"))
+snpgdsSummary(paste0(outDir,"/",name,".gds"))
 sink()
 
 #open the GDS file
