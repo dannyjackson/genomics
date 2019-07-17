@@ -41,7 +41,7 @@ sink()
 sample.id <- read.gdsn(index.gdsn(genofile, "sample.id"))
 
 #make data frame
-tab <- data.frame(sampleid = pca$sample.id,
+tab <- data.frame(sample.id = pca$sample.id,
 pop = factor(pop_code)[match(pca$sample.id, sample.id)],
 EV1 = pca$eigenvect[,1],    # the first eigenvector
 EV2 = pca$eigenvect[,2],    # the second eigenvector
@@ -63,7 +63,7 @@ dev.off()
 
 pdf(file = paste0(outDir,"/",name,"_pca_individuals_notsubsetted.pdf"), useDingbats=FALSE)
 
-plot(tab$EV2, tab$EV1, col=as.integer(tab$sampleid), xlab="eigenvector 2", ylab="eigenvector 1")
-legend("topright", legend=levels(tab$sampleid), pch="o", col=1:nlevels(tab$sampleid))
+plot(tab$EV2, tab$EV1, col=as.integer(tab$sample.id), xlab="eigenvector 2", ylab="eigenvector 1")
+legend("topright", legend=levels(tab$sample.id), pch="o", col=1:nlevels(tab$sample.id))
 
 dev.off()
