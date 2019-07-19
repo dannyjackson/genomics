@@ -9,7 +9,7 @@ outDir <- args[6]
 name <- args[7]
 
 library(qqman)
-fst<-read.table(print0($outDir,"/",$name,".windowed.weir.fst"), header=TRUE)
+fst<-read.table($outDir/$name.windowed.weir.fst), header=TRUE)
 fstsubset<-fst[complete.cases(fst),]
 SNP<-c(1: (nrow(fstsubset)))
 mydf<-data.frame(SNP,fstsubset)
