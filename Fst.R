@@ -9,11 +9,11 @@ outDir <- args[6]
 name <- args[7]
 
 library(qqman)
-fst<-read.table(print0($outDir"/"$name".windowed.weir.fst")), header=TRUE)
+fst<-read.table(paste0(outDir"/"name".windowed.weir.fst")), header=TRUE)
 fstsubset<-fst[complete.cases(fst),]
 SNP<-c(1: (nrow(fstsubset)))
 mydf<-data.frame(SNP,fstsubset)
 
-pdf(file = print0($outDir,"/",$name,".pdf"), width = 20, height = 7, useDingbats=FALSE)
+pdf(file = paste0(outDir,"/",name,".pdf"), width = 20, height = 7, useDingbats=FALSE)
 print(manhattan(mydf,chr="CHROM",bp="BIN_START",p="WEIGHTED_FST",snp="SNP",logp=FALSE,ylab="Weighted Weir and Cockerham Fst"))
 dev.off()
