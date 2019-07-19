@@ -5,11 +5,8 @@
 
 args = commandArgs()
 
-dataset <- args[6]
-outDir <- args[7]
-pops <- args[8]
-name <- args[9]
-window <- args[10]
+outDir <- args[6]
+name <- args[7]
 
 library(qqman)
 fst<-read.table(print0($outDir,"/",$name,".windowed.weir.fst"), header=TRUE)
