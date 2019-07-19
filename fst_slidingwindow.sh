@@ -25,10 +25,4 @@ if [ $# -lt 1 ]
     esac
     done
 
-  vcftools --vcf $dataset --weir-fst-pop $pop1 --weir-fst-pop $pop2 --fst-window-size $window --fst-window-step $window --out print0($outDir,"/",$name)
-
-  sed -i 's/scaffold//g' print0($name,".windowed.weir.fst")
-  sed -i 's/Scaffold//g' print0($name,".windowed.weir.fst")
-  Rscript ~/genomics/Fst.R $dataset $outDir $pops $name $window
-
 fi
