@@ -10,9 +10,7 @@ if [ $# -lt 1 ]
     [-o] Output directory for files
     [-p] Population 1 file
     [-q] Population 2 file
-    [-n] Project name, prefix for output files
-    [-w] Size of sliding window. Also used for step size to prevent overlap."
-
+    [-n] Project name, prefix for output files"
   else
     while getopts v:o:p:n:w: option
     do
@@ -20,7 +18,8 @@ if [ $# -lt 1 ]
     in
     v) dataset=${OPTARG};;
     o) outDir=${OPTARG};;
-    p) pops=${OPTARG};;
+    p) pop1=${OPTARG};;
+    q) pop2=${OPTARG};;
     n) name=${OPTARG};;
     w) window=${OPTARG};;
     esac
@@ -30,6 +29,6 @@ if [ $# -lt 1 ]
 
   sed -i 's/scaffold//g' $name.windowed.weir.fst
   sed -i 's/Scaffold//g' $name.windowed.weir.fst
-  Rscript ~/genomics/Fst.R $dataset $outDir $pops $name $window
+  Rscript ~/genomics/Fst.R $dataset $outDir $name 
 
 fi
