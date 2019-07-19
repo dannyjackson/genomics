@@ -8,7 +8,8 @@ if [ $# -lt 1 ]
     echo "Generates a pdf of a sliding window fst scan.
     [-v] Path to vcf file
     [-o] Output directory for files
-    [-p] Population file
+    [-p] Population 1 file
+    [-q] Population 2 file
     [-n] Project name, prefix for output files
     [-w] Size of sliding window. Also used for step size to prevent overlap."
 
