@@ -29,6 +29,6 @@ if [ $# -lt 1 ]
 
   sed -i 's/scaffold//g' print0($name,".windowed.weir.fst")
   sed -i 's/Scaffold//g' print0($name,".windowed.weir.fst")
-  Rscript ~/Genomics/Fst.R $dataset $outDir $pops $name $window
+  Rscript ~/genomics/Fst.R $dataset $outDir $pops $name $window
 
 fi
