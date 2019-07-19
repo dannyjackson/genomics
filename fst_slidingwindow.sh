@@ -12,7 +12,7 @@ if [ $# -lt 1 ]
     [-q] Population 2 file
     [-n] Project name, prefix for output files"
   else
-    while getopts v:o:p:n:w: option
+    while getopts v:o:p:q:n:w: option
     do
     case "${option}"
     in
