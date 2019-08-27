@@ -35,15 +35,10 @@ scaffoldend=$(awk '{print $3}' <<< "$file")
 
 awk '{if ($4 == "$scaffold") print $0;}' $chain | awk '{if ($5 > $scaffoldstart) print $0;}' | awk '{if ($5 < $scaffoldend) print $0;}' >> $dataset_satsuma.tsv
 done
-
-#determine the range of the chromosome to which this region mapped on the chicken
 awk '{print $2}' $dataset_satsuma.tsv > working.txt
 awk '{print $3}' $dataset_satsuma.tsv >> working.txt
 start=$(sort working.txt | head -n 1)
 end=$(sort working.txt | tail -n 1)
-
-#gives a range of 178084359 178105995
-#So I want to awk the chicken chromosome 1 gff file for any genes in this region
-#gff $4 is start; $5 is end
-#I imaging that there might be a rare occasion where a gene straddles my boundary. In that case, one of these likely would grab it with the others would leave it off. Or not. Who knows. Regardless, you only need one of them.
 awk '{if ($4 > $start && $4 < $end || $5 > $start && $5 < $end) print $0}' ~/reference_datasets/Gallus_gallus.GRCg6a.97.chromosome.1.gff3 > $dataset_gff.tsv
+
+fi
