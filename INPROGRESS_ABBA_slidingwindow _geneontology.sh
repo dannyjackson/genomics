@@ -10,15 +10,17 @@ if [ $# -lt 1 ]
     [-i] Path to input csv file
     [-o] Output directory for files
     [-c] Path to satsuma_summary_chained.out file
+    [-r] Path to directory containing gff files"
 
   else
-    while getopts v:o:p:n:s: option
+    while getopts i:o:c:r: option
     do
     case "${option}"
     in
     i) dataset=${OPTARG};;
     o) outDir=${OPTARG};;
     c) chain=${OPTARG};;
+    r) ref=${OPTARG};;
 
     esac
     done
@@ -35,10 +37,12 @@ scaffoldend=$(awk '{print $3}' <<< "$file")
 
 awk '{if ($4 == "$scaffold") print $0;}' $chain | awk '{if ($5 > $scaffoldstart) print $0;}' | awk '{if ($5 < $scaffoldend) print $0;}' >> $dataset_satsuma.tsv
 done
+
 awk '{print $2}' $dataset_satsuma.tsv > working.txt
 awk '{print $3}' $dataset_satsuma.tsv >> working.txt
 start=$(sort working.txt | head -n 1)
 end=$(sort working.txt | tail -n 1)
 awk '{if ($4 > $start && $4 < $end || $5 > $start && $5 < $end) print $0}' ~/reference_datasets/Gallus_gallus.GRCg6a.97.chromosome.1.gff3 > $dataset_gff.tsv
+rm working.txt
 
 fi
