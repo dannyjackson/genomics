@@ -6,9 +6,10 @@
 
 if [ $# -lt 1 ]
   then
-    echo "Generates two PCA plots, one defining points by population and another defining points by individual.
+    echo "Pulls list of lines from chicken gff file that Satsuma aligned to regions of high introgression, as identified with sliding ABBA BABA windows
     [-i] Path to input csv file
     [-o] Output directory for files
+    [-c] Path to satsuma_summary_chained.out file
 
   else
     while getopts v:o:p:n:s: option
@@ -17,6 +18,7 @@ if [ $# -lt 1 ]
     in
     i) dataset=${OPTARG};;
     o) outDir=${OPTARG};;
+    c) chain=${OPTARG};;
 
     esac
     done
@@ -31,7 +33,7 @@ scaffold=$(awk '{print $1}' <<< "$file")
 scaffoldstart=$(awk '{print $2}' <<< "$file")
 scaffoldend=$(awk '{print $3}' <<< "$file")
 
-awk '{if ($4 == "$scaffold") print $0;}' /data5/satsuma_output/maskedbooby_chicken_output/satsuma_summary.chained.out | awk '{if ($5 > $scaffoldstart) print $0;}' | awk '{if ($5 < $scaffoldend) print $0;}' >> $dataset_satsuma.tsv
+awk '{if ($4 == "$scaffold") print $0;}' $chain | awk '{if ($5 > $scaffoldstart) print $0;}' | awk '{if ($5 < $scaffoldend) print $0;}' >> $dataset_satsuma.tsv
 done
 
 #determine the range of the chromosome to which this region mapped on the chicken
