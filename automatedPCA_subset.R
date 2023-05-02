@@ -47,7 +47,7 @@ stringsAsFactors = FALSE)
 #save files:
 write.table(tab, file = paste0(outDir,"/",name,"_subset.txt"), sep = "\t")
 
-tab <- read.table(paste0(outDir,"/",name,"_subset.txt"), header = TRUE, sep = "\t")
+tab <- read.table(paste0(outDir,"/",name,"_subset.txt"), header = TRUE, sep = "\t", stringsAsFactors=T)
 
 
 #draw it:
