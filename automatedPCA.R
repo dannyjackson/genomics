@@ -47,6 +47,9 @@ EV1 = pca$eigenvect[,1],    # the first eigenvector
 EV2 = pca$eigenvect[,2],    # the second eigenvector
 stringsAsFactors = FALSE)
 
+PC1.PV = pc.percent[1]
+PC2.PV = pc.percent[2]
+
 #save files:
 write.table(tab, file = paste0(outDir,"/",name,".txt"), sep = "\t")
 
