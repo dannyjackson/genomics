@@ -53,14 +53,14 @@ tab <- read.table(paste0(outDir,"/",name,"_subset.txt"), header = TRUE, sep = "\
 #draw it:
 pdf(file = paste0(outDir,"/",name,"_pca_populations_subsetted.pdf"), useDingbats=FALSE)
 
-plot(tab$EV2, tab$EV1, col=as.integer(tab$pop), xlab="eigenvector 2", ylab="eigenvector 1")
+plot(tab$EV1, tab$EV2, col=as.integer(tab$pop), xlab="PC1", ylab="PC2")
 legend("topright", legend=levels(tab$pop), pch="o", col=1:nlevels(tab$pop))
 
 dev.off()
 
 pdf(file = paste0(outDir,"/",name,"_pca_individuals_subsetted.pdf"), useDingbats=FALSE)
 
-plot(tab$EV2, tab$EV1, col=as.integer(tab$sample.id), xlab="eigenvector 2", ylab="eigenvector 1")
+plot(tab$EV1, tab$EV2, col=as.integer(tab$sample.id), xlab="PC1", ylab="PC2")
 legend("topright", legend=levels(tab$sample.id), pch="o", col=1:nlevels(tab$sample.id))
 
 dev.off()
