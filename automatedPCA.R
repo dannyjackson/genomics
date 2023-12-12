@@ -55,15 +55,13 @@ tab <- read.table(paste0(outDir,"/",name,".txt"), header = TRUE, sep = "\t", str
 
 #draw it:
 pdf(file = paste0(outDir,"/",name,"_pca_populations_notsubsetted.pdf"), useDingbats=FALSE)
-
-plot(tab$EV1, tab$EV2, col=as.integer(tab$pop), xlab="PC1", ylab="PC2")
+plot(tab$EV1, tab$EV2, col=as.integer(tab$pop), xlab=paste0("PC1 (Percent Variation =",PC1.PV,")"), ylab=paste0("PC2 (Percent Variation =",PC1.PV,")"))
 legend("topright", legend=levels(tab$pop), pch="o", col=1:nlevels(tab$pop))
 
 dev.off()
 
 pdf(file = paste0(outDir,"/",name,"_pca_individuals_notsubsetted.pdf"), useDingbats=FALSE)
-
-plot(tab$EV2, tab$EV1, col=as.integer(tab$sample.id), xlab="eigenvector 2", ylab="eigenvector 1")
+plot(tab$EV1, tab$EV2, col=as.integer(tab$sample.id), xlab=paste0("PC1 (Percent Variation =",PC1.PV,")"), ylab=paste0("PC2 (Percent Variation =",PC1.PV,")"))
 legend("topright", legend=levels(tab$sample.id), pch="o", col=1:nlevels(tab$sample.id))
 
 dev.off()
